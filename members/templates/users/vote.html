@@ -1,0 +1,122 @@
+{% load static %}
+<html lang="en">
+<head>
+  <title>Vote</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <style>
+    /* BASIC */
+body {
+  font-family: "Poppins", sans-serif;
+  height: auto;
+  width:100%;
+  background: linear-gradient(to bottom, #3333ff 0%, #0099cc 100%);
+}
+</style>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px; 
+}
+
+td{
+    height:100px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+input[type=radio] {
+    width: 40px;
+    height:100%;
+}
+</style>
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+</style>
+
+</head>
+<body>
+
+<div class="container" align="center">
+  <h2 style="color: white;"><strong>Please Donate Your Vote</strong></h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group radio">
+<table>
+  <tr>
+    <th>No.</th>
+    <th>LOGO</th>
+    <th>CANDIDATES</th>
+    <th>Pole</th>
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td>
+      <div class="card" align="center">
+        <img src="{% static 'pole/bjp.png' %}" style="height:80px; width:80px;">
+        <b>BJP</b>
+      </div>
+    </td>
+    <td>first candidate name</td>
+    <td>
+        <label><input type="radio" class="r-btn" name="poll" value="option1" required></label> &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <div class="card" align="center">
+        <img src="{% static 'pole/congress.png' %}" style="height:80px; width:80px;">
+        <b>CONGRES</b>
+      </div>
+    </td>
+    <td>second candidate name</td>
+    <td>
+        <label><input type="radio" name="poll" value="option2" required></label> &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+        <div class="card" align="center">
+        <img src="{% static 'pole/other.png' %}" style="height:80px; width:80px;">
+        <b>other</b>
+      </div>
+    </td>
+    <td>third candidate name</td>
+    <td>
+        <label><input type="radio" name="poll" value="option3" required></label> &nbsp;
+    </td>
+  </tr>
+</table>
+</div>
+<button type="submit" class="btn btn-info">Submit</button>
+</form>
+
+</div>
+
+</body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</html>

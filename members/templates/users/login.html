@@ -1,0 +1,56 @@
+{% load crispy_forms_tags  %}
+
+{% load static %}
+<html lang="en">
+<head>
+  <title>Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/style.css">
+  <style>
+    /* BASIC */
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-image:  url({% static 'img/v1.jpeg' %}) ;
+  background-size: 100% 100%;
+}
+  </style>
+
+
+<body>
+
+<div class="container-flex">
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <div class="fadeIn first">
+        <h2>Login Here...</h2>
+        </div>
+        <form method="POST">
+          {% csrf_token %}
+          {{form |crispy }}
+          <input type="submit" class="fadeIn fourth" style="padding:20px;" value="Log In">
+         <br>
+             <div class="d-flex justify-content-center links">
+                Forgot password ?<a href="{% url 'reset_password' %}" class="ml-2 underlineHover">  Reset Password</a>
+             </div>
+             <br>
+          Don't have account?  <a class="underlineHover ml-2" href="{% url 'register' %}" > Register Here</a>
+
+        </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+</html>

@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar show navbar-expand-md bg-dark sticky-top navbar-dark" style="width: 100%;">
+  <a class="navbar-brand" href="#">E-Voting</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse show navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">| Username : {{user.username}} </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">| Name : {{user.first_name}} {{user.last_name}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">| Email-ID : {{user.email}} </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'result' %}">|  Check Result </a>
+      </li>
+      <li class="nav-item">
+        {% if user.profile.voted %}
+          <a class="nav-link" href="#">| Voted succesfully</a>
+        {% else %}
+          <a class="nav-link" href="#">| not voted</a>
+        {% endif %}
+      </li>
+      <li class=" ml-auto">
+        <a class="btn btn-danger" style="color:black; border-radius:5px; " href="{% url 'login' %}"><strong>Logout</strong></a>
+      </li>    
+    </ul>
+  </div>  
+</nav>
+<br>
+
+<div class="container" align="center">
+{% if user.profile.voted %}
+    <h3>Congoo !!</h3>
+    <div class="container">
+      <li>You have voted successfully</li>
+      <li>guidline one</li>
+      <li>guidline two</li>
+      <br>
+      <a class="btn btn-success" style="padding:15px; color:black; border-radius:5px; " href="{% url 'login' %}"><strong>Logout</strong></a>
+    </div> 
+{% else %}
+  <h3>Welcome to E-Voting </h3>
+    <div class="container">
+      <li>instruction one</li>
+      <li>instruction two</li>
+      <li>instruction three</li><br>
+      <a class="btn btn-success" style="padding: 15px; color:black; border-radius:5px; " href="{% url 'vote' user.id %}"><strong>Vote Here</strong></a>
+    </div>
+{% endif %}
+</div>
+
+
+<script>
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-50px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+</script>
+</body>
+</html>
+
+

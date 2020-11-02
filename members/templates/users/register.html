@@ -1,0 +1,75 @@
+{% load crispy_forms_tags  %}
+{% load static %}
+<html lang="en">
+<head>
+  <title>Register</title>
+  
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'style.css'%}">
+  <style type="text/css">
+    body {
+          font-family: "Poppins", sans-serif;
+          background-image:  url({% static 'img/v2.jpeg' %}) ;
+          background-size: 100% 700px;
+          }
+  </style>
+
+<body>
+
+<div>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <!--img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" /-->
+        <h2>register here</h2>
+      </div>
+
+    <!-- Login Form -->
+    <form method="POST">
+      {% csrf_token %} 
+	    {{form.username }}
+      {{form.first_name }}
+      {{form.last_name }}
+		  {{form.email }}
+		  {{form.password1 }}
+		  {{form.password2 }}
+      <input type="submit" style="padding:20px;" class="fadeIn fourth" value="Register">
+		  <br>
+      Already have account? 
+      <a class="underlineHover" href="{% url 'login' %}" >Login Here</a>
+    </form>
+    {{form.errors}}
+  </div>
+</div> 
+<script>
+    //Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Username..';
+    form_fields[2].placeholder='First Name';
+    form_fields[3].placeholder='Last Name';
+		form_fields[4].placeholder='Email..';
+		form_fields[5].placeholder='Enter password';
+		form_fields[6].placeholder='Confirm Password';
+
+
+		for (var field in form_fields){
+			form_fields[field].className += ' form-control'
+		}
+	</script>
+</div>
+</div>
+
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+</html>
